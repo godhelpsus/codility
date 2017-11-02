@@ -4,8 +4,7 @@ import org.junit.Test;
 
 public class Triangle {
 
-//	@Test	
-//	sdsdsd
+//	@Test1
 	public void Correctness(){
 
 		int [][] A = {
