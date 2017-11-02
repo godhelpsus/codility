@@ -16,7 +16,6 @@ public class Triangle {
 			String str = "answer = "+new Triangle().solution(A[idx]);
 			System.out.println(str);
 		}
-		
 	}
 	
 	
