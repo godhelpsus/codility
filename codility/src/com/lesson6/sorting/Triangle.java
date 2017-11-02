@@ -4,7 +4,7 @@ import org.junit.Test;
 
 public class Triangle {
 
-//	@Test
+//	@Test1
 	public void Correctness(){
 
 		int [][] A = {
@@ -16,7 +16,6 @@ public class Triangle {
 			String str = "answer = "+new Triangle().solution(A[idx]);
 			System.out.println(str);
 		}
-		
 	}
 	
 	
