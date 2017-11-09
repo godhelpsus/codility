@@ -9,10 +9,15 @@ public class NumberOfDiscIntersections {
 	@Test
 	public void Correctness(){
 
+		System.out.println(Integer.MAX_VALUE);
+		
 		int [][] A = {
 			  {1, 5, 2, 1, 4, 0} // 11
+			  ,{0} // 0
+			  ,{0, 0, 0, 1} // 0
 			  ,{1, 1, 1} // 3
 			  ,{2147483647, 2147483647} // 1
+			  ,{2147483647, 2147483647, 2147483647} // 3
 		};
 		
 		for(int idx=0 ; idx<A.length ; idx++){
@@ -22,7 +27,7 @@ public class NumberOfDiscIntersections {
 		
 	}
 	
-//	@Test
+	@Test
 	public void Performance(){
 		
 		for(int N=0;N<=5;N++){
@@ -30,8 +35,8 @@ public class NumberOfDiscIntersections {
 			int [] A = new int[(int)Math.pow(10, N)];
 			for(int i=0;i<A.length;i++){
 //				A[i] = ((int)(Math.random()*1000000000));
-				//A[i] = 2147483647;
-				A[i] = 1;
+				A[i] = 2147483647-i;
+//				A[i] = 10;
 //				if(i%2==0) A[i]=2;
 			}
 			
@@ -71,20 +76,23 @@ public class NumberOfDiscIntersections {
 		int size = A.length;
 		int maxCnt = 10000000; 
 		
+		byte b1 = 0;
+		byte b2 = 1;
+		
 		LOOP1:for(int i=0;i<size-1;i++){
 			
-			int a = A[i];
+			long a = A[i];
 			
-			int aMax = i+a;
+			long aMax = i+a;
 //			int aMin = i-a<0?0:i-a;
 			for(int j=i+1;j<size;j++){
 				
-				int b = A[j];
+				long b = A[j];
 				
 //				int bMax = j+b;
 				
-				int bMin = j - b;
-
+				long bMin = j - b;
+						
 				if((aMax-bMin)>=0){
 					c++;
 				}
