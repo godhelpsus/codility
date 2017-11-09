@@ -1,4 +1,4 @@
-package com.lesson6.stacksandqueues;
+package com.lesson7.stacksandqueues;
 
 import java.util.*;
 
