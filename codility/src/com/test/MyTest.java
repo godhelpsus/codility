@@ -1,5 +1,7 @@
 package com.test;
 
+import java.util.Stack;
+
 import org.junit.Test;
 
 import com.lesson7.stacksandqueues.Brackets;
@@ -14,7 +16,7 @@ public class MyTest {
 	}
 	
 	
-	@Test
+//	@Test
 	public void test01(){
 		
 		int NN = (int)Math.pow(10, 5);
@@ -44,6 +46,21 @@ public class MyTest {
 		c = new Brackets().solution(s);
 		
 		System.out.println("s = "+s.length()+"\ttime = "+(System.currentTimeMillis()-sTime)+" msec\t"+"answer = "+c);	
+		
+		
+	}
+	
+	@Test
+	public void test003(){
+		
+		Stack<Integer> stack = new Stack<Integer>();
+		
+//		stack.push(10);
+//		stack.push(20);
+//		stack.push(15);
+//		stack.push(9);
+		
+		System.out.println(stack.pop());
 		
 		
 	}
