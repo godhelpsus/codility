@@ -20,7 +20,7 @@ public class Nesting {
 	}
 	
 	
-public int solution(String s){
+	public int solution(String s){
 		
 		Stack<Character> stack = new Stack<Character>();
 		int result = 1;
