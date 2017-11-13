@@ -1,6 +1,7 @@
 package com.lesson7.stacksandqueues;
 
 import java.util.HashMap;
+import java.util.Stack;
 
 import org.junit.Test;
 
@@ -12,21 +13,24 @@ public class Brackets {
 		String [] S = {
 			     "{[()()]}" // 1
 			    ,"([)()]" // 0
-			    ,"[[[[]]]][][]" // 0
-//			    ,"" // 1
-//			    ,"[" // 0
-//			    ,"{{" // 0
-//			    ,"}" // 0
-//			    ,"))}{" // 0
-//			    ,"}{" // 0
-//			    ,"{}{}" // 1
-//			    ,"[}{]" // 0
-//			    ,"[()()}{]" // 0
-//			    ,"[()()}]" // 0
-//			    ,"{[()()}]" // 0
-//			    ,"{[()]()}" // 1
-//			    ,"{[()()]}" // 1
-//			    ,"({{({}[]{})}}[]{})" // 1
+			    ,"[[[[]]]][][]" // 1
+			    ,"[[[[](]]{}]" // 1
+			    ,"({} )" // 0
+			    ,"{}[" // 0
+			    ,"{{" // 0
+			    ,"" // 1
+			    ,"))}{" // 0
+			    ,"}{" // 0
+			    ,"{}{}" // 1
+			    ,"[}{]" // 0
+			    ,"[()()}{]" // 0
+			    ,"[()()}]" // 0
+			    ,"{[()()}]" // 0
+			    ,"{[()]()}" // 1
+			    ,"{[()()]}" // 1
+			    ,"({{({}[]{})}}[]{})" // 1
+			    ,"{{(([[[[" // 1
+			    ,"()(()" // 1
 		};
 		
 		for(int idx=0 ; idx<S.length ; idx++){
@@ -35,7 +39,7 @@ public class Brackets {
 	}
 	
 	
-	@Test
+//	@Test
 	public void Performance(){
 		
 		for(int N=0;N<=5;N++){
@@ -43,19 +47,19 @@ public class Brackets {
 			String s = "";
 			for(int i=0;i<NN;i++){
 				
-//				int div = ((int)(Math.random()*100))%6;
-//				if(div==1) s+="{";
-//				else if(div==2) s+="}";
-//				else if(div==3) s+="(";
-//				else if(div==4) s+=")";
-//				else if(div==5) s+="[";
-//				else s+="]";
-				
-				if(i<NN/2){
-					s+="[";	
-				}else{
-					s+="]";
-				}
+				int div = ((int)(Math.random()*100))%6;
+				if(div==1) s+="{";
+				else if(div==2) s+="}";
+				else if(div==3) s+="(";
+				else if(div==4) s+=")";
+				else if(div==5) s+="[";
+				else s+="]";
+//				
+//				if(i<NN/2){
+//					s+="[";	
+//				}else{
+//					s+="]";
+//				}
 				
 			}
 			
@@ -66,9 +70,43 @@ public class Brackets {
 		
 		
 	}
+
+	public int solution(String s){
+		
+		Stack<Character> stack = new Stack<Character>();
+		int result = 1;
+		for(int i=0;i<s.length();i++){
+			
+			char c = s.charAt(i);
+			
+			if(c=='{'||c=='('||c=='['){
+				
+				result = 0;
+				stack.push(c);
+				
+			}else if(c=='}'||c==')'||c==']'){
+				
+				if(stack.size()>0 && getPair(stack.pop())==c){
+					result = 1;
+				}else{
+					result = 0;
+					break;
+				}
+				
+			}else{
+				result = 0;
+				break;
+			}
+		}
+		
+		if(stack.size()>0)
+			result = 0;
+		
+		return result;
+	}
 	
 	
-	public int solution (String s){
+	public int solution_old3 (String s){
 		
 		for(int i=0;i<s.length()-1;i++){
 			
@@ -129,7 +167,7 @@ public class Brackets {
 	}	
 	
 	
-	public int solution_old (String S){
+	public int solution_old1 (String S){
 		
 		int result 		= 1;
 		int maxNestIdx 	= S.length();
@@ -159,13 +197,9 @@ public class Brackets {
 	
 	public char getPair(char c){
 		     if(c=='(') return ')';
-		//else if(c==')')	return '(';
 		else if(c=='{') return '}';
-		//else if(c=='}') return '{';
 		else if(c=='[')	return ']';
-		//else if(c==']')	return '[';
 		else return 0;
-		
 	}
 	
 }
