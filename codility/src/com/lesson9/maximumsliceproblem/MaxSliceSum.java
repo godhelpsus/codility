@@ -9,9 +9,9 @@ public class MaxSliceSum {
 		
 		int [][] AA = { 
 				  {3,2,-6,4,0} // 5
-//				, {10} // 10
-//				, {-10, -10} // -10
-//				, {10,2} // 12
+				, {10} // 10
+				, {-10, -10} // -10
+				, {10,2} // 12
 				, {-10,10,-1, 2} // 11
 		};
 		
@@ -24,36 +24,35 @@ public class MaxSliceSum {
 	
 	public int solution(int[] A){
 		
-		int maxSlice 	= A[0];
-		int maxEnd		= A[0]; 
+		int max 	= Integer.MIN_VALUE;
 		
-		for(int i=1;i<A.length;i++){
+		// 최대값 구하기
+		for(int a:A){
+			max = a>max?a:max;
+		}
+		
+		// 모두 음수인경우 최대값이 maxSliceSum이 된다.
+		if(max < 0){
+			return max; 
+		}
+		
+		int maxSliceSum = 0;
+		int currentSum = 0;
+		
+		for(int i=0;i<A.length;i++){
 			
 			int a = A[i];
 			
-			/*
-			if(maxSlice==Integer.MIN_VALUE){
-				maxSlice = a;
-			}
-			*/
-			
-			if(maxSlice < maxSlice + maxEnd + a){
-				maxSlice = maxSlice + maxEnd + a;
+			currentSum = currentSum + a;
+			if(currentSum < 0){ // 음수가 되어버리는 경우, 현재 구한 최대값보다 커질수가 없다
+				currentSum = 0;
 			}
 			
-			if(maxSlice < maxEnd + a){
-				maxSlice = maxEnd + a;
-			}
-			
-			if(maxSlice < a){
-				maxSlice = a;
-			}
-			
-			maxEnd += a;
+			maxSliceSum =  currentSum > maxSliceSum ? currentSum : maxSliceSum;
 			
 		}
 		
-		return maxSlice;
+		return maxSliceSum;
 		
 	}
 }
